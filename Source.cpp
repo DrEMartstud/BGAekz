@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <iterator>
-
+#
 
 using namespace std;
 void first() {
@@ -61,11 +61,11 @@ void fourth() {
 			cout << "Year: \n";
 			cin >> y;
 			try {
-				if (y < 1900 || y > 2020) throw 0.12;
+				if (y < 1900 || y > 2020) throw 0.0;
 			}
-			catch (float) {
+			catch (double) {
 				cout << "Err. Y: \n";
-				cin >> y;
+				y = 0;
 			}
 			cout << "Pol: \n";
 			cin >> p;
@@ -74,7 +74,7 @@ void fourth() {
 			}
 			catch (int) {
 				cout << "Err. P: \n";
-				cin >> p;
+				p = "?";
 			}
 			familia = f;
 			pol = p;
@@ -87,9 +87,12 @@ void fourth() {
 	family Person;
 	Person.input();
 	Person.output();
+}
 
+void fifth() {
+//
 }
 int main() {
-	fourth();
+	
 	return 0;
 }

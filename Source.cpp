@@ -2,6 +2,7 @@
 #include <vector>
 #include <iterator>
 #include <ctime>
+#include <stdlib.h>
 
 using namespace std;
 void ukazateliTest() {
@@ -316,54 +317,156 @@ void twelvth() {
 //Наследование косвенное: классу familia предшествующий shtat, который содержит должность и зарплату, а классу shtat предшествует класс sotrudnik, 
 //содержащий год рождения и пол. Все три класса содержат конструкторы. Классы familia содержит метод, выводящий поля всех классов на экран.
 	cout << "-Twelvth-\n";
-
-
+	class Familia {
+	public:
+		Familia(string familia) { surname = familia; }
+		virtual void show() { cout << "Sur: " << surname << endl; }
+	protected:
+		string surname;
+	};
+	class Shtat: public Familia {
+	public:
+		Shtat(string familia, string position, float amountOfPayedMoney) : Familia(familia) {
+			job = position; 
+			sallary = amountOfPayedMoney;
+		}
+		virtual void show() { cout << "Sur: " << surname << " Pos: " << job << " $: " << sallary << endl; }
+	protected:
+		string job;
+		float sallary;
+	};
+	class Sotrudnik: public Shtat {
+	public:
+		Sotrudnik(string familia, string position, float amountOfPayedMoney, int born, char sexType) : Shtat(familia, position, amountOfPayedMoney) {
+			year = born;
+			sex = sexType;
+		}
+		virtual void show() { cout << "Sur: " << surname << " Pos: " << job << " $: " << sallary << " Y: " << year << " Sex: " << sex << endl; }
+	protected:
+		int year;
+		char sex;
+	};
+	Familia a("Osel");
+	a.show();
+	Shtat b("Phiona", "Pincess", 0);
+	b.show();
+	Sotrudnik c("Shrek", "Ogre", 0, 1999, 'm');
+	c.show();
 }
 
 void thirteenth() {
-	//
+//13) Множественное наследование. То же, что и в задаче 12, только наследование прямое.
 	cout << "-Thirteenth-\n";
+
 }
 
 void fourteenth() {
-	//
+//14) Виртуальные базовый классы. У главы семьи есть внук – наследник отца и дяди, которые в свою очередь является наследниками своего отца. 
+//Имущество: дед владеет домом; отец владеет квартирой; дядя –автовладелец; внук имеет долги; Сможет ли наследство покрыть долги внука? 
 	cout << "-Fourteenth-\n";
+
 }
 
 void fifteenth() {
-	//
+//15) Создать базовый класс dimen, в котором хранятся длина и ширина геометрической фигуры. В классе dimen также объявляется объявляется виртуальная функция  pl(), 
+//которая, при ее подмене в производном классе train возвращает площадь треугольника, 
+//а при ее подмене в производном классе par возвращает площадь параллелограмма. Во всех трех классах создать конструкторы! К виртуальной функции обратиться через указатель. 
 	cout << "-Fifteenth-\n";
 }
 
 void sixteenth() {
-	//
+//16) Чистые виртуальные функции. То же, что и в задаче 15, только pl() – чистая виртуальная функция. 
 	cout << "-Sixteenth-\n";
 }
 
 void seventeenth() {
-	//
+//17) Дружественный функции. Создать классы tryan и rectan; оба класса содержат закрытые переменные: rectan – длину и ширину прямоугольника, 
+//tryan –  катеты прямоугольного треугольника. Оба класса имеют конструктор и функцию, которая вычисляет периметр прямоугольника в классе rectan и периметр треугольника в классе tryan. 
+//Функция per_greater дружественна для обоих классов. Эта функция вычисляет кратность периметров друг другу (оператор % работает с целочисленными переменными!).
 	cout << "-Seventeenth-\n";
 }
 
 void eighteenth() {
-	//
+//18) Родовые функции – работа с массивами. Найти min, max. Вывести элементы между min и max. Просуммировать все положительные элементы. 
 	cout << "-Eighteenth-\n";
 }
-
+void clearScreen() {
+	system("cls");
+}
+void selectTask() {
+	int number;
+	bool itIsTrue = true;
+	while (itIsTrue) {
+	cout << "Number of task: \n";
+	cin >> number;
+	switch (number)
+	{
+	case 0:
+		ukazateliTest();
+		break;
+	case 1:
+		first();
+		break;
+	case 2:
+		second();
+		break;
+	case 3:
+		third();
+		break;
+	case 4:
+		fourth();
+		break;
+	case 5:
+		fifth();
+		break;
+	case 6:
+		sixth();
+		break;
+	case 7:
+		seventh();
+		break;
+	case 8:
+		eighth();
+		break;
+	case 9:
+		ningth();
+		break;
+	case 10:
+		tenth();
+		break;
+	case 11:
+		eleventh();
+		break;
+	case 12:
+		twelvth();
+		break;
+	case 13:
+		thirteenth();
+		break;
+	case 14:
+		fourteenth();
+		break;
+	case 15:
+		fifteenth();
+		break;
+	case 16:
+		sixteenth();
+		break;
+	case 17:
+		seventeenth();
+		break;
+	case 18:
+		eighteenth();
+		break;
+	case 404:
+		clearScreen();
+		break;
+	default:
+		itIsTrue = false;
+	}
+}
+ }
 int main() {
-	
-	//ukazateliTest();
-	//first();
-	//second();
-	//third();
-	//fourth();
-	//fifth();
-	//sixth();
-	//seventh();
-	//eighth();
-	//ningth();
-	//tenth();
-	eleventh();
-
+	selectTask(); 
 	return 0;
 }

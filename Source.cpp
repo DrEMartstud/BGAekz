@@ -252,11 +252,102 @@ void ningth() {
 }
 
 void tenth() {
+//10) Создать базовый класс, открытые члены которого – основание и высота геометрической фигуры. 
+//Создать производные классы, которые вычисляют площадь треугольника и площадь параллелограмма и выводят полученные значения на экран.
 	cout << "-Tenth-\n";
+	class Shape {
+	public:
+		float a, h;
+		Shape(float osnovanie, float visota) { a = osnovanie, h = visota; }
+	};
+	class Parall : public Shape {
+	public:
+		float sParall;
+		Parall(float osnovanieP, float visotaP) : Shape(osnovanieP, visotaP) {
+			sParall = a * h;
+			cout << "Sp: " << sParall << endl;
+		}
+	};
+	class Triangle : public Shape {
+	public:
+		float sTriangle;
+		Triangle(float osnovanieT, float visotaT) : Shape(osnovanieT, visotaT) {
+			sTriangle = (a * h) / 2;
+			cout << "St: " << sTriangle << endl;
+		}
+	};
+	Parall Sp(2.2, 4.5);
+	Triangle St(2.0, 1.0);
 }
 
 void eleventh() {
+//11) Создать базовый класс для хранения числа этажей и комнат в здании, а также общую площадь комнат. 
+//Создать производный класс, который хранит число лекционных аудиторий и компьютерных классов и еще один произвольный класс, 
+//который хранит число штатных единиц заведующих компьютерным классом и число огнетушителей. 
 	cout << "-Eleventh-\n";
+	class House {
+	public:
+		int floors, rooms, commonArea;
+		House(int numberOfFloors, int numberOfRooms, int wholeCommonArea) { floors = numberOfFloors; rooms = numberOfRooms; commonArea = wholeCommonArea; } 
+	};
+	class University : public House {
+	public:
+		int computerClasses;
+		University(int numberOfFloors, int numberOfLectoriums, int amountOfComputerClasses, int wholeCommonArea) : House(numberOfFloors, numberOfLectoriums, wholeCommonArea) {
+			computerClasses = amountOfComputerClasses;
+		}
+	};
+	class Responsible : public University {
+	public:
+		int responsible, fireExtngsh;
+		Responsible(int numberOfFloors, int numberOfLectoriums, int amountOfComputerClasses, int wholeCommonArea, int amountOfResponsibleForComputerClasses, int amountOfForeExtnguishers) : University(numberOfFloors, numberOfLectoriums, amountOfComputerClasses ,wholeCommonArea) {
+			responsible = amountOfResponsibleForComputerClasses;
+			fireExtngsh = amountOfForeExtnguishers;
+		}
+	};
+	Responsible resp(2, 10, 4, 200, 2, 20);
+	cout << "Fext: " << resp.fireExtngsh << endl;
+	cout << "ComAr: " << resp.commonArea<< endl;
+	cout << "CompCl: "<< resp.computerClasses << endl;
+}
+
+void twelvth() {
+//12) Множественное наследование. Создать производный класс familia, содержащий закрытый член класс для хранения фамилии. 
+//Наследование косвенное: классу familia предшествующий shtat, который содержит должность и зарплату, а классу shtat предшествует класс sotrudnik, 
+//содержащий год рождения и пол. Все три класса содержат конструкторы. Классы familia содержит метод, выводящий поля всех классов на экран.
+	cout << "-Twelvth-\n";
+
+
+}
+
+void thirteenth() {
+	//
+	cout << "-Thirteenth-\n";
+}
+
+void fourteenth() {
+	//
+	cout << "-Fourteenth-\n";
+}
+
+void fifteenth() {
+	//
+	cout << "-Fifteenth-\n";
+}
+
+void sixteenth() {
+	//
+	cout << "-Sixteenth-\n";
+}
+
+void seventeenth() {
+	//
+	cout << "-Seventeenth-\n";
+}
+
+void eighteenth() {
+	//
+	cout << "-Eighteenth-\n";
 }
 
 int main() {
@@ -271,5 +362,8 @@ int main() {
 	//seventh();
 	//eighth();
 	//ningth();
+	//tenth();
+	eleventh();
+
 	return 0;
 }

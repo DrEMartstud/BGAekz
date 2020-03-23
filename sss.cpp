@@ -357,26 +357,100 @@ void twelvth() {
 void thirteenth() {
 //13) Множественное наследование. То же, что и в задаче 12, только наследование прямое.
 	cout << "-Thirteenth-\n";
-
+	cout << "Wtf? \n";
 }
 
 void fourteenth() {
 //14) Виртуальные базовый классы. У главы семьи есть внук – наследник отца и дяди, которые в свою очередь является наследниками своего отца. 
 //Имущество: дед владеет домом; отец владеет квартирой; дядя –автовладелец; внук имеет долги; Сможет ли наследство покрыть долги внука? 
 	cout << "-Fourteenth-\n";
-
+	class GrandFather {
+	public:
+		int worth;
+		string owns;
+		
+		GrandFather(int worth) {
+			this->worth = worth;
+			owns = "House";
+			cout << " GrandFathersWorth: " << this->worth << endl;
+		}
+	};
+	class Father : virtual public GrandFather{
+	public:
+		int worth;
+		string owns;
+		Father(int worth) : GrandFather(worth) {
+			this->worth = worth;
+			this->owns = "Apartment";
+			cout << " FathersWorth: " << this->worth << endl;
+		}
+	};
+	class Uncle : virtual public GrandFather {
+	public:
+		int worth;
+		string owns;
+		Uncle(int worth) : GrandFather(worth) {
+			this-> worth = worth;
+			this-> owns = "Auto";
+			cout << " UnclesWorth: " << this-> worth << endl;
+		}
+	};
+	class Grandson : public Father, public Uncle {
+	public:
+		int debt, worth;
+		Grandson(int debt, int unclesWorth, int fathersWorth, int grandFathersWorth) : Father (fathersWorth) , Uncle(unclesWorth) , GrandFather(grandFathersWorth){
+			this->debt = debt;
+			cout << " Debt: " << debt << endl;
+		}
+		void check() {
+			if (((debt - Father::worth - GrandFather::worth) <= 0) || (debt - Uncle::worth - GrandFather::worth) <= 0) cout << "Debt can be anihilated\n"; else cout << "Sorry, but debt cant be anihilated\n";
+		}
+	};
+	
+	Grandson Andy(10000, 2000, 10000, 10000);
+	Andy.check();
 }
 
 void fifteenth() {
-//15) Создать базовый класс dimen, в котором хранятся длина и ширина геометрической фигуры. В классе dimen также объявляется объявляется виртуальная функция  pl(), 
-//которая, при ее подмене в производном классе train возвращает площадь треугольника, 
+//15) Создать базовый класс dimen, в котором хранятся длина и ширина геометрической фигуры. В классе dimen также объявляется виртуальная функция  pl(), 
+//которая, при ее подмене в производном классе trian возвращает площадь треугольника, 
 //а при ее подмене в производном классе par возвращает площадь параллелограмма. Во всех трех классах создать конструкторы! К виртуальной функции обратиться через указатель. 
 	cout << "-Fifteenth-\n";
+	class Dimen {
+	public:
+		int a, b;
+		Dimen(int a, int b) {
+			this->a = a;
+			this->b = b;
+		}
+		virtual void pl() = 0;
+	};
+	class Trian : public Dimen {
+	public:
+		Trian(int a, int b) : Dimen(a, b) {}
+		virtual void pl() {
+			float s = a * b / 2;
+			cout << "St: " << s << endl;
+		}
+	};
+	class Par : public Dimen {
+	public:
+		Par(int a, int b) : Dimen(a, b) {}
+		virtual void pl() {
+			float s = a * b;
+			cout << "Sp: " << s << endl;
+		}
+	};
+	Trian tr(1, 2);
+	tr.pl();
+	Par pr(1, 2);
+	pr.pl();
 }
 
 void sixteenth() {
 //16) Чистые виртуальные функции. То же, что и в задаче 15, только pl() – чистая виртуальная функция. 
 	cout << "-Sixteenth-\n";
+
 }
 
 void seventeenth() {
@@ -384,12 +458,44 @@ void seventeenth() {
 //tryan –  катеты прямоугольного треугольника. Оба класса имеют конструктор и функцию, которая вычисляет периметр прямоугольника в классе rectan и периметр треугольника в классе tryan. 
 //Функция per_greater дружественна для обоих классов. Эта функция вычисляет кратность периметров друг другу (оператор % работает с целочисленными переменными!).
 	cout << "-Seventeenth-\n";
+//	class Trian {
+//	public:
+//		friend double per_greater(Rectan trian, Trian perimet);
+//		Trian(int a, int b) {
+//			this->kateta = a;
+//			this->katetb = b;
+//		}
+//		int perimetr() {
+//			return kateta + katetb + sqrt(kateta * kateta + katetb * katetb);
+//		}
+//	private:
+//		int kateta, katetb;
+//	};
+//	class Rectan {
+//	public:
+//		Rectan(int a, int b) {
+//			this->dlina = a;
+//			this->shirina = b;
+//		}
+//		int perimetr() {
+//			return (dlina + shirina) * 2;
+//		}
+//		friend double per_greater(Rectan perimetr, Trian perimetr);
+//	private:
+//		int dlina, shirina;
+//	};
+
+//	double per_greater(Rectan perimetr, Trian perimetr) {
+//		return 0.0;	}
+	
 }
 
 void eighteenth() {
-//18) Родовые функции – работа с массивами. Найти min, max. Вывести элементы между min и max. Просуммировать все положительные элементы. 
+	//18) Родовые функции – работа с массивами. Найти min, max. Вывести элементы между min и max. Просуммировать все положительные элементы. 
 	cout << "-Eighteenth-\n";
+	template <
 }
+
 void clearScreen() {
 	system("cls");
 }
